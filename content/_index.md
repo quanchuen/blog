@@ -1,11 +1,10 @@
 ---
 title: "About"
-date: 2021-02-21T03:53:14Z
 ---
 
-# About
+# Hi.
 
-Hi, My Name Quan "Chuen" Zhou.
+My Name Quan "Chuen" Zhou.
 
 I push the limits of Linux systems, seek elegant and simple solutions for problems.
 
