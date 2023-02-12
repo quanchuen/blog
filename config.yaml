@@ -159,7 +159,7 @@ menu:
     - identifier: about
       name: about
       title: About
-      url: /about
+      url: /
     - identifier: blog
       name: blog
       title: Blog
