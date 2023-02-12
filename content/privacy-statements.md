@@ -3,12 +3,18 @@ title: "Privacy"
 date: 2020-01-30T09:39:11.608389506Z
 slug: privacy-statements
 draft: false
-tags: []
+tags: ["privacy", "compliance"]
 math: false
 toc: false
 ---
 
-Personally I hate trackers as much as you do, but since the site served by the Cloudflare Inc., you should at least read the "End Users" chapter on their [privacy policy](https://www.cloudflare.com/privacypolicy/).
+Personally I hate trackers as much as you do, I have turned off as much as "functions" I could. But there are a few third party involved:
+
+This site generated and served by the Cloudflare Inc., you should at least read the "End Users" chapter on their [privacy policy](https://www.cloudflare.com/privacypolicy/).
+
+Annotation service is possible through [hypothes.is](https://web.hypothes.is/privacy/) You need to read their [privacy policies](https://web.hypothes.is/privacy/) too.
+
+
 
 ## Scope
 
