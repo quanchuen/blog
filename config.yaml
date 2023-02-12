@@ -41,6 +41,11 @@ disableKinds:
 taxonomies:
   tag: tags
 
+# asset configurations
+assets:
+  # disable css integrity hint, cdn friendly
+  disable_fingerprinting: true
+
 minify:
   # Do not minify XML files to avoid CDATA escape issues
   disableXML: true
