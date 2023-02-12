@@ -1,0 +1,15 @@
+# General
+.DS_Store
+# Thumbnails
+._*
+
+# Hugo 
+
+# Generated files from NPM.
+/node_modules
+# Generated files by hugo.
+/public
+
+# Temporary lock file while building.
+.hugo_build.lock
+
