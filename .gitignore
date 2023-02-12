@@ -4,7 +4,7 @@
 ._*
 
 # Hugo 
-
+resources/
 # Generated files from NPM.
 /node_modules
 # Generated files by hugo.

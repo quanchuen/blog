@@ -1,0 +1,33 @@
+baseURL: 'https://qzhou.dev'
+languageCode: en-us
+title: Proceedings of a Boring Human
+copyright: '© {year}'
+rights: Public Domain 
+
+params:
+  dateFormat: '2006-01-02'
+  chalk:
+    about_enabled: true
+    scrollappear_enabled: true
+    theme_toggle: true
+    rss_enabled: true
+    blog_theme: light
+    local_fonts: true
+module:
+  imports:
+    - path: github.com/sergeyklay/gohugo-theme-ed
+menu:
+  main:
+    - identifier: about
+      name: about
+      title: About
+      url: /about
+    - identifier: blog
+      name: blog
+      title: Blog
+      url: /blog
+    - identifier: privcy-statements
+      name: privacy-statements
+      title: Privacy Statements
+      url: /privacy-statements
+
