@@ -1,8 +1,142 @@
 baseURL: 'https://qzhou.dev'
 languageCode: en-us
 title: Proceedings of a Boring Human
+tagline: Exercise notes and other boring stuff
 copyright: '© {year}'
 rights: Public Domain 
+theme: github.com/sergeyklay/gohugo-theme-ed
+readmore: true
+
+# helpful for indexers
+enableRobotsTXT: true
+seo:
+  # Will be used in schema.org/Organization.
+  # The site.Title  will be used if empty.
+  publisher: Quan Zhou
+author:
+  name: Quan Zhou
+  email: hi@qzhou.dev
+  github: q2hou
+  location: 'Tokyo, Japan'
+
+
+# Gitinfo
+frontmatter:
+  lastmod:
+    - lastmod
+    - ':git'
+    - date
+    - publishDate
+
+# When using ref or relref to resolve page links and a link cannot
+# resolved, it will be logged with this log level.
+refLinksErrorLevel: WARNING
+
+# Kick out RSS, we'll use Atom and FEED bellow.
+disableKinds:
+  - RSS
+
+# We have just the default tags taxonomy, and remove the categories
+# taxonomy for site as not used.
+taxonomies:
+  tag: tags
+
+minify:
+  # Do not minify XML files to avoid CDATA escape issues
+  disableXML: true
+  tdewolff:
+    html:
+      keepQuotes: true
+
+outputs:
+  home: [HTML, Atom, FEED, JSONFEED, JSON, MANIFEST, humanstxt]
+  section: [HTML, Atom, FEED, JSONFEED]
+  page: [HTML]
+  taxonomy: [HTML]
+  term: [HTML]
+
+outputFormats:
+  # For more see: https://validator.w3.org/feed/docs/atom.html#whatIsAtom
+  Atom:
+    name: Atom
+    # The correct header Content-Type header for an Atom feed is
+    # application/atom+xml. However, Chromium does not handle it
+    # correctly (see https://code.google.com/p/chromium/issues/detail?id=104358).
+    #
+    # The most compatible header is 'text/xml; charset=utf-8', which
+    # will cause the feed to be parsed correctly by most clients.
+    # Note that you should be encoding your feed in UTF-8.
+    mediaType: text/xml
+    # generated file = <baseName>.<mediaType.'text/xml'.suffixes[0]> = feeds/feed.atom.xml
+    baseName: feeds/feed.atom
+    rel: alternate
+    isPlainText: false
+    isHTML: false
+    noUgly: true
+    permalinkable: false
+
+  FEED:
+    name: Feed
+    mediaType: text/xml
+    baseName: feeds/feed.rss
+    rel: alternate
+    isPlainText: false
+    isHTML: false
+    noUgly: true
+    permalinkable: false
+
+  # For more see: https://www.jsonfeed.org/
+  JSONFEED:
+    name: JsonFeed
+    mediaType: application/feed+json
+    baseName: feeds/feed
+    rel: alternate
+    isPlainText: true
+    isHTML: false
+    noUgly: false
+
+  MANIFEST:
+    # The .webmanifest extension is specified in the Media type registration
+    # section of the specification (the response of the manifest file should
+    # return Content-Type: application/manifest+json).
+    #
+    # For more see: https://w3c.github.io/manifest/#media-type-registration=
+    name: Manifest
+    mediaType: application/manifest+json
+    baseName: manifest
+    rel: manifest
+    isPlainText: true
+    isHTML: false
+    noUgly: false
+    notAlternative: true
+
+  # For more see: https://gohugo.io/templates/output-formats/
+  humanstxt:
+    mediaType: text/plain
+    baseName: humans
+    rel: author
+    isPlainText: true
+    isHTML: false
+    noUgly: true
+    permalinkable: false
+    notAlternative: true
+
+mediaTypes:
+  text/xml:
+    suffixes:
+      - xml
+  application/feed+json:
+    suffixes:
+      - json
+  application/manifest+json:
+    suffixes:
+      - webmanifest
+
+# Sitemap config
+sitemap:
+  changefreq: weekly
+  filename: sitemap.xml
+  priority: 0.5
 
 params:
   dateFormat: '2006-01-02'
@@ -16,6 +150,10 @@ params:
 module:
   imports:
     - path: github.com/sergeyklay/gohugo-theme-ed
+module:
+  hugoVersion:
+    extended: true
+    min: '0.95.0'
 menu:
   main:
     - identifier: about
@@ -31,3 +169,16 @@ menu:
       title: Privacy Statements
       url: /privacy-statements
 
+feeds:
+  - identifier: rss
+    name: RSS 2.0
+    url: /feeds/feed.rss.xml
+    weight: 1
+  - identifier: atom
+    name: Atom
+    url: /feeds/feed.atom.xml
+    weight: 2
+  - identifier: json
+    name: Json Feed
+    url: /feeds/feed.json
+    weight: 3
