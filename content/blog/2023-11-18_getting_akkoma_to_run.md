@@ -1,5 +1,6 @@
 ---
 title: "Getting akkoma to run"
+draft: false
 ---
 
 While trying to deploy [akkoma with docker](https://docs.akkoma.dev/stable/installation/docker_en/#building-the-container) on my rootless docker environment, I have encountered the classical permission denied error:
