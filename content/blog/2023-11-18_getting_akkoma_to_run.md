@@ -1,5 +1,6 @@
 ---
 title: "Getting akkoma to run"
+date: 2023-11-23T16:00:42Z
 draft: false
 ---
 
