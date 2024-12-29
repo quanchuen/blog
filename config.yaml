@@ -13,11 +13,12 @@ seo:
   # Will be used in schema.org/Organization.
   # The site.Title  will be used if empty.
   publisher: Quan Zhou
-author:
-  name: Quan Zhou
-  email: hi@qzhou.dev
-  github: q2hou
-  location: 'Tokyo, Japan'
+site:
+  author:
+    name: Quan Zhou
+    email: hi@qzhou.dev
+    github: q2hou
+    location: 'Tokyo, Japan'
 
 
 # Gitinfo
