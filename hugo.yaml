@@ -28,11 +28,11 @@ params:
   comments:
     enable: true
     type: 'giscus'
-  giscus:
-    repo: 'quanchuen/blog'
-    repoId: 'R_kgDOI8xcIw'
-    category: "General"
-    categoryId: "DIC_kwDOI8xcI84ClluV"
+    giscus:
+      repo: 'quanchuen/blog'
+      repoId: 'R_kgDOI8xcIw'
+      category: "General"
+      categoryId: "DIC_kwDOI8xcI84ClluV"
   assets:
     disable_fingerprinting: true
 
