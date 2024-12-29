@@ -22,14 +22,12 @@ This privacy statement explains how and what information is collected, processed
 
 ## Data and Server Logs
 
-The software that supports this site is [Hugo](https://gohugo.io/) with [ed](https://github.com/sergeyklay/gohugo-theme-ed) template on a Cloudflare Pages, it preserves access logs with following:
+The software that supports this site is [Hugo](https://gohugo.io/) with [ed](https://github.com/sergeyklay/gohugo-theme-ed) template and [giscuz](https://giscuz.app) for discussion on a Cloudflare Pages, it preserves access logs with following:
 
 - Date and time of access 
 - IP address
 - Url
 - User-Agent
-
-The IP addresses received by WriteFreely is a CloudFlare connecting IP, which isn't visitor's.
 
 ## Data Handling
 
@@ -42,6 +40,8 @@ IP and which webpages were viewed by someone can hardly be PII, but there are st
 It is possible that within this site, content from third parties such as YouTube videos, PDF documents from or graphics are integrated from other websites. These third parties may obtain your IP address. I have no control over the use of your information by the third-party.
 
 I will try to ensure that only reputable and privacy-aware providers are the only ones that are linked, however, I have no control over their use of your information.
+
+giscuz's privacy statement: https://github.com/giscus/giscus/blob/main/PRIVACY-POLICY.md
 
 ## Cookies
 
