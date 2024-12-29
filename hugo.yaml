@@ -68,8 +68,8 @@ minify:
       keepQuotes: true
 
 outputs:
-  home: [HTML, Atom, FEED, JSONFEED, JSON, MANIFEST, humanstxt]
-  section: [HTML, Atom, FEED, JSONFEED]
+  home: [HTML, atom, feed, jsonfeed, manifest, humanstxt]
+  section: [HTML, atom, feed, jsonfeed]
   page: [HTML]
   taxonomy: [HTML]
   term: [HTML]
@@ -94,7 +94,7 @@ outputFormats:
     noUgly: true
     permalinkable: false
 
-  FEED:
+  feed:
     name: Feed
     mediaType: 'application/xml'
     baseName: feeds/feed.rss
