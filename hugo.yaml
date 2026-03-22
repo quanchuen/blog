@@ -1,38 +1,23 @@
 baseURL: 'https://qzhou.dev'
 title: Proceedings of a Boring Human
-tagline: Exercise notes and other boring stuff
 copyright: '© {year}'
-rights: Public Domain 
-theme: github.com/sergeyklay/gohugo-theme-ed
+rights: Public Domain
+theme: boring-blue
 readmore: true
 annotations: false
 
 # helpful for indexers
 enableRobotsTXT: true
 params:
+  tagline: Exercise notes and other boring stuff
   seo:
     publisher: Quan Zhou
   dateFormat: '2006-01-02'
-  chalk:
-    about_enabled: true
-    scrollappear_enabled: true
-    theme_toggle: true
-    rss_enabled: true
-    blog_theme: light
-    local_fonts: true
   author:
     name: Quan Zhou
     email: hi@qzhou.dev
     github: q2hou
     location: 'Tokyo, Japan'
-  comments:
-    enable: true
-    type: 'giscus'
-    giscus:
-      repo: 'quanchuen/blog'
-      repoId: 'R_kgDOI8xcIw'
-      category: "General"
-      categoryId: "DIC_kwDOI8xcI84ClluV"
   assets:
     disable_fingerprinting: true
 
@@ -59,7 +44,6 @@ taxonomies:
   tag: tags
 
 
-
 minify:
   # Do not minify XML files to avoid CDATA escape issues
   disableXML: true
@@ -68,7 +52,7 @@ minify:
       keepQuotes: true
 
 outputs:
-  home: [HTML, atom, feed, jsonfeed, manifest, humanstxt]
+  home: [HTML, JSON, atom, feed, jsonfeed, manifest, humanstxt]
   section: [HTML, atom, feed, jsonfeed]
   page: [HTML]
   taxonomy: [HTML]
@@ -147,8 +131,6 @@ sitemap:
   priority: 0.5
 
 module:
-  imports:
-    - path: github.com/sergeyklay/gohugo-theme-ed
   hugoVersion:
     extended: true
     min: '0.121.0'
@@ -162,6 +144,10 @@ menu:
       name: blog
       title: Blog
       url: /blog
+    - identifier: search
+      name: search
+      title: Search
+      url: /search
     - identifier: privcy-statements
       name: privacy-statements
       title: Privacy Statements
@@ -180,3 +166,18 @@ feeds:
     name: Json Feed
     url: /feeds/feed.json
     weight: 3
+
+defaultContentLanguage: en
+languages:
+  en:
+    languageName: English
+    languageCode: en
+    weight: 100
+  zh:
+    languageName: 中文
+    languageCode: zh-CN
+    weight: 50
+  ja:
+    languageName: にほんご
+    languageCode: ja
+    weight: 10

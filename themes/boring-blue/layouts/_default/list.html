@@ -1,0 +1,10 @@
+{{ define "main" }}
+<div class="page-label">{{ .Title }}</div>
+<h2>{{ if eq .Section "blog" }}Recent Posts{{ else }}{{ .Title }}{{ end }}</h2>
+
+{{ range .Paginator.Pages }}
+  {{ partial "post-card.html" . }}
+{{ end }}
+
+{{ partial "pagination.html" . }}
+{{ end }}

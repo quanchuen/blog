@@ -1,0 +1,8 @@
+<div class="post-card">
+  <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+  <div class="meta">{{ .Date.Format "2006-01-02" }}</div>
+  {{ with .Summary }}
+  <div class="excerpt">{{ . | plainify | truncate 200 }}</div>
+  {{ end }}
+  {{ partial "tag-pills.html" . }}
+</div>

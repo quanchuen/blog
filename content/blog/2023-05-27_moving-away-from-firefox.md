@@ -8,4 +8,3 @@ math: false
 toc: false
 ---
 
-There's has been some recent development in how eregerously Mozilla 

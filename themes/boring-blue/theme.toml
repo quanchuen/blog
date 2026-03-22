@@ -1,0 +1,9 @@
+name = "boring-blue"
+license = "Public Domain"
+licenselink = ""
+description = "A light neobrutalism Hugo theme with boring blue palette"
+tags = ["blog", "neobrutalism", "minimal"]
+min_version = "0.121.0"
+
+[author]
+  name = "Quan Zhou"
