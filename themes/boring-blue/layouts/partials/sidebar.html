@@ -1,0 +1,37 @@
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <div>
+      <h1><a href="{{ .Site.Home.RelPermalink }}" style="text-decoration:none;color:inherit;">{{ .Site.Title }}</a></h1>
+      <div class="tagline">{{ .Site.Params.tagline }}</div>
+    </div>
+    <!-- Label can stay here — references checkbox by id/for -->
+    <label for="menu-toggle" class="hamburger">
+      <span></span><span></span><span></span>
+    </label>
+  </div>
+
+  <!-- Checkbox must be sibling of <nav> for ~ combinator to work -->
+  <input type="checkbox" id="menu-toggle" class="menu-checkbox" aria-label="Toggle menu">
+
+  <nav>
+    {{ range .Site.Menus.main }}
+    <a href="{{ .URL }}"{{ if $.IsMenuCurrent "main" . }} class="active"{{ end }}>{{ .Name }}</a>
+    {{ end }}
+  </nav>
+
+  <div class="sidebar-bottom">
+    <div class="lang-switch">
+      {{ if .IsTranslated }}
+        <a href="{{ .RelPermalink }}" class="active">{{ site.Language.LanguageName }}</a>
+        {{ range .Translations }}
+        <a href="{{ .RelPermalink }}">{{ .Language.LanguageName }}</a>
+        {{ end }}
+      {{ else }}
+        <a href="{{ .RelPermalink }}" class="active">{{ site.Language.LanguageName }}</a>
+      {{ end }}
+    </div>
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+      <span id="theme-icon">☀️</span>
+    </button>
+  </div>
+</aside>

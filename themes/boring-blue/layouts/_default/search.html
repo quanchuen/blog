@@ -1,0 +1,64 @@
+{{ define "main" }}
+<div class="page-label">Search</div>
+<h2>Search</h2>
+
+<input type="text" id="search-input" class="search-input" placeholder="Type to search..." autofocus>
+
+<div id="search-results" style="margin-top:1.5rem;"></div>
+
+<script src="/js/fuse.js"></script>
+<script>
+(function() {
+  var index = null;
+  var fuse = null;
+  var input = document.getElementById('search-input');
+  var results = document.getElementById('search-results');
+
+  fetch('/index.json')
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      index = data;
+      fuse = new Fuse(data, {
+        keys: ['title', 'summary', 'tags'],
+        threshold: 0.3,
+        includeScore: true
+      });
+      // If there's a query param, search immediately
+      var params = new URLSearchParams(window.location.search);
+      var q = params.get('q');
+      if (q) {
+        input.value = q;
+        doSearch(q);
+      }
+    });
+
+  input.addEventListener('input', function() {
+    doSearch(this.value);
+  });
+
+  function doSearch(query) {
+    if (!fuse || !query) {
+      results.innerHTML = '';
+      return;
+    }
+    var matches = fuse.search(query).slice(0, 20);
+    if (matches.length === 0) {
+      results.innerHTML = '<p style="color:var(--muted);">No results found.</p>';
+      return;
+    }
+    results.innerHTML = matches.map(function(m) {
+      var item = m.item;
+      var tags = (item.tags || []).map(function(t) {
+        return '<span class="tag">' + t + '</span>';
+      }).join(' ');
+      return '<div class="post-card">' +
+        '<h3><a href="' + item.permalink + '">' + item.title + '</a></h3>' +
+        '<div class="meta">' + item.date + '</div>' +
+        '<div class="excerpt">' + item.summary + '</div>' +
+        (tags ? '<div style="margin-top:0.5rem;">' + tags + '</div>' : '') +
+        '</div>';
+    }).join('');
+  }
+})();
+</script>
+{{ end }}

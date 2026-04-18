@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="{{ .Lang }}">
+<head>
+  {{ partial "head.html" . }}
+</head>
+<body>
+  {{ partial "sidebar.html" . }}
+  <div class="main">
+    {{ block "main" . }}{{ end }}
+    {{ partial "footer.html" . }}
+  </div>
+  <script src="/js/main.js"></script>
+  {{ if not .IsHome }}<script src="/js/link-preview.js" defer></script>{{ end }}
+</body>
+</html>

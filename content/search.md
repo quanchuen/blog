@@ -1,6 +1,4 @@
 ---
 title: Search
-annotations: false
+layout: search
 ---
-
-{{< form-search >}}

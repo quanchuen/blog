@@ -1,0 +1,16 @@
+{{ define "main" }}
+<div class="page-label">Tag</div>
+<h2>{{ .Title }}</h2>
+
+{{ if .Content }}
+<div class="tag-wiki">
+  <div class="prose">
+    {{ .Content }}
+  </div>
+</div>
+{{ end }}
+
+{{ range .Pages }}
+  {{ partial "post-card.html" . }}
+{{ end }}
+{{ end }}
