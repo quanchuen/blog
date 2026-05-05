@@ -22,4 +22,23 @@
     });
     updateIcon();
   }
+
+  // Vertical text toggle
+  var verticalToggle = document.getElementById('vertical-toggle');
+  var mainContent = document.getElementById('main-content');
+
+  if (verticalToggle && mainContent) {
+    // Check for saved preference
+    var savedVertical = localStorage.getItem('vertical-text');
+    if (savedVertical === 'true') {
+      mainContent.classList.add('vertical-layout');
+      verticalToggle.classList.add('active');
+    }
+
+    verticalToggle.addEventListener('click', function() {
+      var isVertical = mainContent.classList.toggle('vertical-layout');
+      verticalToggle.classList.toggle('active', isVertical);
+      localStorage.setItem('vertical-text', isVertical);
+    });
+  }
 })();
