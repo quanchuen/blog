@@ -453,6 +453,154 @@ body {
   text-align: center;
 }
 
+/* ===== Japanese Typography - Vertical Text ===== */
+.vertical-text {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  height: 100%;
+  max-height: 80vh;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 1rem;
+  line-height: 2;
+  font-feature-settings: "vert" 1, "vrt2" 1;
+  -webkit-font-feature-settings: "vert" 1, "vrt2" 1;
+}
+
+.vertical-text p {
+  margin: 0 1rem 0 0;
+  text-indent: 1em;
+}
+
+.vertical-text h1,
+.vertical-text h2,
+.vertical-text h3,
+.vertical-text h4 {
+  border-left: none;
+  border-right: 4px solid var(--accent);
+  padding-left: 0;
+  padding-right: 0.75rem;
+  margin: 0 1.5rem 0 0;
+}
+
+/* ===== Japanese Typography - Ruby/Furigana ===== */
+ruby {
+  ruby-align: center;
+  ruby-position: over;
+}
+
+rt {
+  font-size: 0.5em;
+  line-height: 1;
+  color: var(--muted);
+  font-weight: normal;
+}
+
+/* Firefox specific ruby styling */
+@-moz-document url-prefix() {
+  rt {
+    font-size: 0.6em;
+  }
+}
+
+/* ===== Japanese Typography - Combined Classes ===== */
+.prose .vertical-text {
+  /* Using system fonts only - already installed on user's device */
+  /* Yu Mincho = Windows/macOS, Hiragino = macOS/iOS, MS Mincho = Windows */
+  font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "MS Mincho", "HGS MinchoE", serif;
+}
+
+.prose ruby rt {
+  color: var(--muted);
+}
+
+/* Dark mode adjustments for ruby text */
+[data-theme="dark"] rt {
+  color: #94A3B8;
+}
+
+/* Japanese text emphasis */
+.sesame-dot {
+  text-emphasis-style: sesame;
+  text-emphasis-position: over right;
+}
+
+.sesame-dot-white {
+  text-emphasis-style: filled sesame white;
+  text-emphasis-position: over right;
+}
+
+/* Bōten (side dots) for vertical text */
+.boten {
+  text-emphasis-style: filled;
+  text-emphasis-position: over right;
+}
+
+/* ===== Vertical Layout Toggle ===== */
+.main.vertical-layout article {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  height: auto;
+  max-height: 80vh;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 2rem;
+  font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "MS Mincho", "HGS MinchoE", serif;
+}
+
+.main.vertical-layout .prose {
+  line-height: 2;
+}
+
+.main.vertical-layout .prose p {
+  margin: 0 1em 0 0;
+  text-indent: 1em;
+}
+
+.main.vertical-layout .prose h1,
+.main.vertical-layout .prose h2,
+.main.vertical-layout .prose h3,
+.main.vertical-layout .prose h4 {
+  border-left: none;
+  border-right: 4px solid var(--accent);
+  padding-left: 0;
+  padding-right: 0.75rem;
+  margin: 0 1.5rem 1rem 0;
+}
+
+.main.vertical-layout header {
+  margin-bottom: 2rem;
+  margin-left: 2rem;
+  margin-right: 0;
+}
+
+/* Vertical toggle button styling */
+.vertical-toggle {
+  width: 36px;
+  height: 36px;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  background: var(--card);
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 2px 2px 0px var(--border);
+  color: var(--dark);
+  font-weight: bold;
+}
+
+.vertical-toggle:hover {
+  background: var(--accent);
+  color: white;
+}
+
+.vertical-toggle.active {
+  background: var(--accent);
+  color: white;
+}
+
 /* ===== Responsive (Mobile) ===== */
 @media (max-width: 768px) {
   body {

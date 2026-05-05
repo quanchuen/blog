@@ -30,6 +30,11 @@
         <a href="{{ .RelPermalink }}" class="active">{{ site.Language.LanguageName }}</a>
       {{ end }}
     </div>
+    {{ if or (eq .Lang "ja") (eq .Lang "zh") (.Params.verticalText) }}
+    <button class="vertical-toggle" id="vertical-toggle" aria-label="Toggle vertical text">
+      <span id="vertical-icon">縦</span>
+    </button>
+    {{ end }}
     <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
       <span id="theme-icon">☀️</span>
     </button>
