@@ -26,6 +26,14 @@
     }
   })();
 </script>
+<script>
+  // Apply saved sidebar collapsed state before paint to prevent flash
+  (function() {
+    if (localStorage.getItem('sidebar-collapsed') === 'true') {
+      document.documentElement.classList.add('sidebar-collapsed');
+    }
+  })();
+</script>
 {{ range .AlternativeOutputFormats -}}
   {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
 {{ end }}
