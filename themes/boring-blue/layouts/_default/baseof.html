@@ -9,7 +9,8 @@
     {{ block "main" . }}{{ end }}
     {{ partial "footer.html" . }}
   </div>
-  <script src="/js/main.js"></script>
+  {{ $main := resources.Get "js/main.js" | minify | fingerprint }}
+  <script src="{{ $main.RelPermalink }}"></script>
   {{ if not .IsHome }}<script src="/js/link-preview.js" defer></script>{{ end }}
 </body>
 </html>
