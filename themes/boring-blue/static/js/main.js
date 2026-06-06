@@ -41,4 +41,25 @@
       localStorage.setItem('vertical-text', isVertical);
     });
   }
+
+  // Sidebar collapse toggle (desktop)
+  var collapseBtn = document.getElementById('sidebar-collapse');
+  var openBtn = document.getElementById('sidebar-open');
+
+  function setSidebarCollapsed(collapsed) {
+    document.documentElement.classList.toggle('sidebar-collapsed', collapsed);
+    localStorage.setItem('sidebar-collapsed', collapsed);
+  }
+
+  if (collapseBtn) {
+    collapseBtn.addEventListener('click', function() {
+      setSidebarCollapsed(true);
+    });
+  }
+
+  if (openBtn) {
+    openBtn.addEventListener('click', function() {
+      setSidebarCollapsed(false);
+    });
+  }
 })();

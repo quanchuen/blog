@@ -8,6 +8,8 @@
     <label for="menu-toggle" class="hamburger">
       <span></span><span></span><span></span>
     </label>
+    <!-- Desktop-only: collapse the whole sidebar -->
+    <button class="sidebar-collapse" id="sidebar-collapse" aria-label="Collapse sidebar">‹</button>
   </div>
 
   <!-- Checkbox must be sibling of <nav> for ~ combinator to work -->
@@ -40,3 +42,8 @@
     </button>
   </div>
 </aside>
+
+<!-- Desktop-only: floating button to reopen a collapsed sidebar -->
+<button class="sidebar-open" id="sidebar-open" aria-label="Open sidebar">
+  <span></span><span></span><span></span>
+</button>

@@ -59,6 +59,7 @@ body {
   gap: 2rem;
   z-index: 100;
   display: flex;
+  transition: transform 0.2s ease;
 }
 
 .sidebar-header {
@@ -163,12 +164,73 @@ body {
   background: var(--dark);
 }
 
+/* Collapse button (inside sidebar header, desktop only) */
+.sidebar-collapse {
+  width: 32px;
+  height: 32px;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  background: var(--card);
+  cursor: pointer;
+  font-size: 1.2rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--dark);
+  box-shadow: 2px 2px 0px var(--border);
+}
+
+/* Floating reopen button (outside sidebar, desktop only, shown when collapsed) */
+.sidebar-open {
+  display: none;
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  width: 40px;
+  height: 40px;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  background: var(--card);
+  cursor: pointer;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  z-index: 101;
+  box-shadow: 2px 2px 0px var(--border);
+}
+
+.sidebar-open span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: var(--dark);
+}
+
+.sidebar-collapsed .sidebar-open {
+  display: flex;
+}
+
 /* ===== Main Content ===== */
 .main {
   margin-left: 260px;
   flex: 1;
   padding: 2rem 3rem;
   max-width: 900px;
+  transition: margin-left 0.2s ease;
+}
+
+/* ===== Collapsed sidebar (desktop) ===== */
+.sidebar-collapsed .sidebar {
+  transform: translateX(-100%);
+}
+
+.sidebar-collapsed .main {
+  margin-left: 0;
+  max-width: none;
+  /* Clear the fixed reopen button so it doesn't overlap content */
+  padding-top: 4rem;
 }
 
 /* ===== Page Label ===== */
@@ -639,6 +701,20 @@ rt {
 
   .hamburger {
     display: flex;
+  }
+
+  /* Desktop-only collapse controls don't apply on mobile */
+  .sidebar-collapse,
+  .sidebar-collapsed .sidebar-open {
+    display: none;
+  }
+
+  .sidebar-collapsed .sidebar {
+    transform: none;
+  }
+
+  .sidebar-collapsed .main {
+    margin-left: 0;
   }
 
   .sidebar-bottom {
