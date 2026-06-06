@@ -41,4 +41,14 @@
       localStorage.setItem('vertical-text', isVertical);
     });
   }
+
+  // Sidebar collapse/expand toggle (desktop mini bar)
+  var collapseBtn = document.getElementById('sidebar-collapse');
+
+  if (collapseBtn) {
+    collapseBtn.addEventListener('click', function() {
+      var collapsed = document.documentElement.classList.toggle('sidebar-collapsed');
+      localStorage.setItem('sidebar-collapsed', collapsed);
+    });
+  }
 })();

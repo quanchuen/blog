@@ -1,13 +1,19 @@
 <aside class="sidebar" id="sidebar">
   <div class="sidebar-header">
-    <div>
+    <div class="sidebar-title">
       <h1><a href="{{ .Site.Home.RelPermalink }}" style="text-decoration:none;color:inherit;">{{ .Site.Title }}</a></h1>
       <div class="tagline">{{ .Site.Params.tagline }}</div>
     </div>
+    <!-- Mini-bar logo: only shown when the sidebar is collapsed -->
+    <a href="{{ .Site.Home.RelPermalink }}" class="sidebar-logo-link" aria-label="{{ .Site.Title }}">
+      <img class="sidebar-logo" src="/icon.svg" alt="{{ .Site.Title }}" width="32" height="32">
+    </a>
     <!-- Label can stay here — references checkbox by id/for -->
     <label for="menu-toggle" class="hamburger">
       <span></span><span></span><span></span>
     </label>
+    <!-- Desktop-only: collapse to / expand from the mini bar (arrow set in CSS) -->
+    <button class="sidebar-collapse" id="sidebar-collapse" aria-label="Toggle sidebar"></button>
   </div>
 
   <!-- Checkbox must be sibling of <nav> for ~ combinator to work -->
