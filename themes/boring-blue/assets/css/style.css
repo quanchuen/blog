@@ -214,6 +214,12 @@ body {
   transition: margin-left 0.2s ease;
 }
 
+/* Compact nav/lang variants: hidden when the sidebar is expanded */
+.nav-icon,
+.lang-code {
+  display: none;
+}
+
 /* ===== Collapsed sidebar: mini bar (desktop) ===== */
 .sidebar-collapsed .sidebar {
   width: 64px;
@@ -221,10 +227,8 @@ body {
   align-items: center;
 }
 
-/* Hide everything except the logo and the stacked controls */
-.sidebar-collapsed .sidebar-title,
-.sidebar-collapsed nav,
-.sidebar-collapsed .lang-switch {
+/* Only the title text is dropped; logo, nav icons, lang and controls stay */
+.sidebar-collapsed .sidebar-title {
   display: none;
 }
 
@@ -235,10 +239,55 @@ body {
   width: 100%;
 }
 
+/* Nav becomes a vertical stack of clickable emoji icons */
+.sidebar-collapsed nav {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.25rem;
+  width: 100%;
+}
+
+.sidebar-collapsed nav a {
+  padding: 0.5rem 0;
+  text-align: center;
+  font-size: 1.25rem;
+}
+
+.sidebar-collapsed .nav-label {
+  display: none;
+}
+
+.sidebar-collapsed .nav-icon {
+  display: inline;
+}
+
+/* Language switch becomes stacked, compact uppercase codes */
+.sidebar-collapsed .lang-switch {
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  gap: 0.4rem;
+}
+
+.sidebar-collapsed .lang-switch a {
+  text-align: center;
+}
+
+.sidebar-collapsed .lang-full {
+  display: none;
+}
+
+.sidebar-collapsed .lang-code {
+  display: inline;
+  text-transform: uppercase;
+}
+
 .sidebar-collapsed .sidebar-bottom {
   flex-direction: column;
   align-items: center;
   gap: 0.75rem;
+  width: 100%;
 }
 
 .sidebar-collapsed .main {
@@ -737,6 +786,26 @@ rt {
 
   .sidebar-collapsed .sidebar-title {
     display: block;
+  }
+
+  /* Restore full-text nav/lang on mobile even if collapsed is persisted */
+  .sidebar-collapsed .nav-icon,
+  .sidebar-collapsed .lang-code {
+    display: none;
+  }
+
+  .sidebar-collapsed .nav-label,
+  .sidebar-collapsed .lang-full {
+    display: inline;
+  }
+
+  .sidebar-collapsed .lang-switch {
+    flex-direction: row;
+  }
+
+  .sidebar-collapsed nav a {
+    text-align: left;
+    font-size: inherit;
   }
 
   .sidebar-collapsed .main {
