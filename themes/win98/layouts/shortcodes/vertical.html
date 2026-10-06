@@ -1,0 +1,15 @@
+{{/* Vertical Text Shortcode
+  Usage: {{< vertical >}}
+  Your vertical text content here...
+  It can span multiple paragraphs.
+  {{< /vertical >}}
+
+  Optional parameters:
+  - class: additional CSS classes
+  - style: inline styles
+*/}}
+{{- $class := .Get "class" | default "" -}}
+{{- $style := .Get "style" | default "" -}}
+<div class="vertical-text {{ $class }}"{{ with $style }} style="{{ . }}"{{ end }}>
+  {{ .Inner | markdownify }}
+</div>

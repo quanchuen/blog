@@ -1,0 +1,33 @@
+{{ $icons := dict "about" "👤" "blog" "📝" "search" "🔍" "privcy-statements" "🔒" }}
+<div class="taskbar">
+  <button class="start-button" id="start-button" aria-haspopup="menu" aria-expanded="false" aria-controls="start-menu">
+    <img src="/icon.svg" alt="" width="16" height="16"><b>Start</b>
+  </button>
+  <div class="start-menu" id="start-menu" role="menu" hidden>
+    <div class="start-menu-banner"><span>{{ .Site.Title }}</span></div>
+    <ul class="start-menu-items">
+      {{ range .Site.Menus.main }}
+      <li><a role="menuitem" href="{{ .URL }}"><span class="start-icon" aria-hidden="true">{{ index $icons .Identifier | default "🔗" }}</span>{{ .Title }}</a></li>
+      {{ end }}
+      <li class="start-menu-separator" role="separator"></li>
+      {{ range .Site.Home.AllTranslations }}
+      <li><a role="menuitem" href="{{ .RelPermalink }}" lang="{{ .Language.Lang }}"><span class="start-icon" aria-hidden="true">🌐</span>{{ .Language.LanguageName }}</a></li>
+      {{ end }}
+      <li class="start-menu-separator" role="separator"></li>
+      {{ with .Site.Params.author.github }}
+      <li><a role="menuitem" href="https://github.com/{{ . }}"><span class="start-icon" aria-hidden="true">💾</span>GitHub</a></li>
+      {{ end }}
+      {{ with .Site.Params.author.email }}
+      <li><a role="menuitem" href="mailto:{{ . }}"><span class="start-icon" aria-hidden="true">✉️</span>Mail</a></li>
+      {{ end }}
+    </ul>
+  </div>
+  <div class="taskbar-tasks">
+    <button class="task-button active" id="task-button" aria-pressed="true">
+      <img src="/icon.svg" alt="" width="16" height="16"><span>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }}{{ end }}</span>
+    </button>
+  </div>
+  <div class="tray">
+    <time id="tray-clock"></time>
+  </div>
+</div>

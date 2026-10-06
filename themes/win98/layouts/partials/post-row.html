@@ -1,0 +1,9 @@
+{{/* Keep in sync with the row markup built in _default/search.html */}}
+<tr>
+  <td>
+    <a class="file-name" href="{{ .RelPermalink }}">{{ .Title }}</a>
+    {{ with .Summary }}<div class="excerpt">{{ . | plainify | truncate 200 }}</div>{{ end }}
+    {{ partial "tag-pills.html" . }}
+  </td>
+  <td class="col-date">{{ .Date.Format "2006-01-02" }}</td>
+</tr>

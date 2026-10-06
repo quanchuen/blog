@@ -1,0 +1,5 @@
+{{ define "main" }}
+<h1 class="page-heading">{{ if eq .Section "blog" }}Recent Posts{{ else }}{{ .Title }}{{ end }}</h1>
+{{ partial "file-list.html" .Paginator.Pages }}
+{{ partial "pagination.html" . }}
+{{ end }}

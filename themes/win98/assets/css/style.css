@@ -1,0 +1,913 @@
+/*
+ * win98 theme — layered on top of 98.css (concatenated before this file).
+ * 98.css compiles its colors to literals, so the palette below mirrors them
+ * for the bits we draw ourselves.
+ */
+
+:root {
+  --desktop: #008080;
+  --surface: #c0c0c0;
+  --highlight: #ffffff;
+  --face: #dfdfdf;
+  --shadow: #808080;
+  --frame: #0a0a0a;
+  --navy: #000080;
+  --navy-light: #1084d0;
+  --text: #222222;
+  --muted: #555555;
+  --tooltip: #ffffe1;
+  --taskbar-height: 30px;
+
+  --raised: inset -1px -1px var(--frame), inset 1px 1px var(--highlight),
+            inset -2px -2px var(--shadow), inset 2px 2px var(--face);
+  --raised-thin: inset -1px -1px var(--shadow), inset 1px 1px var(--highlight);
+  --sunken: inset -1px -1px var(--highlight), inset 1px 1px var(--shadow),
+            inset -2px -2px var(--face), inset 2px 2px var(--frame);
+  --sunken-thin: inset -1px -1px var(--highlight), inset 1px 1px var(--shadow);
+
+  --font-ui: "Pixelated MS Sans Serif", Tahoma, Arial, sans-serif;
+  /* Readable text for long-form content; Tahoma/Verdana are period-correct */
+  --font-text: Tahoma, Verdana, "Segoe UI", "Hiragino Sans", "Hiragino Kaku Gothic ProN",
+               "Yu Gothic", "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+  --font-mono: "Lucida Console", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --font-mincho: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro",
+                 "MS Mincho", "HGS MinchoE", serif;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--desktop);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--desktop);
+  font-family: var(--font-ui);
+  font-size: 11px;
+  padding-bottom: var(--taskbar-height);
+}
+
+/* ===== Desktop & main window ===== */
+.desktop {
+  padding: 24px 16px;
+}
+
+.app-window {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - var(--taskbar-height) - 48px);
+}
+
+.maximized .desktop {
+  padding: 0;
+}
+
+.maximized .app-window {
+  max-width: none;
+  min-height: calc(100vh - var(--taskbar-height));
+}
+
+.minimized .app-window {
+  display: none;
+}
+
+.title-bar-text {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.title-bar-icon {
+  flex: none;
+}
+
+.title-bar {
+  user-select: none;
+}
+
+.app-window > .window-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0 3px 3px;
+  min-width: 0;
+}
+
+/* ===== Menu bar ===== */
+.menu-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px;
+  padding: 2px 2px 3px;
+  border-bottom: 1px solid var(--shadow);
+  box-shadow: 0 1px 0 var(--highlight);
+  margin-bottom: 4px;
+}
+
+.menu-bar a {
+  color: #000;
+  text-decoration: none;
+  padding: 3px 7px;
+  text-transform: capitalize;
+}
+
+/* Access-key style underline on the first letter */
+.menu-bar a::first-letter {
+  text-decoration: underline;
+}
+
+.menu-bar a:hover,
+.menu-bar a:focus-visible {
+  box-shadow: var(--raised-thin);
+  outline: none;
+}
+
+.menu-bar a.active {
+  box-shadow: var(--sunken-thin);
+}
+
+.menu-bar-spacer {
+  flex: 1;
+}
+
+.vertical-toggle {
+  min-width: 0;
+  min-height: 0;
+  padding: 2px 8px;
+  font-family: var(--font-mincho);
+  font-size: 13px;
+  color: #000;
+  text-shadow: none;
+}
+
+.vertical-toggle.active {
+  box-shadow: var(--sunken);
+  background: repeating-conic-gradient(var(--surface) 0 25%, var(--highlight) 0 50%) 0 0 / 2px 2px;
+}
+
+/* ===== Address bar ===== */
+.address-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 2px 6px;
+}
+
+.address-bar input {
+  flex: 1;
+  min-width: 0;
+  color: var(--text);
+}
+
+/* ===== Main content area ===== */
+.main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 4px 2px 8px;
+}
+
+/* Let the document page fill the window, like a WordPad sheet */
+.main > .document {
+  flex: 1;
+}
+
+.page-heading {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: bold;
+  margin: 4px 0 8px;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+/* White "document" page, like WordPad */
+.document {
+  background: #fff;
+  box-shadow: var(--sunken);
+  padding: 28px 36px 36px;
+  color: var(--text);
+  font-family: var(--font-text);
+  font-size: 15px;
+  line-height: 1.7;
+  -webkit-font-smoothing: auto;
+  overflow-wrap: break-word;
+}
+
+.post-header {
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--surface);
+}
+
+.post-header h1 {
+  font-size: 26px;
+  line-height: 1.25;
+  margin: 0 0 6px;
+}
+
+.meta {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* ===== Buttons drawn on links (tags, pagination, dialogs) ===== */
+.btn,
+.tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface);
+  box-shadow: var(--raised);
+  color: var(--text);
+  text-decoration: none;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  line-height: 1;
+  -webkit-font-smoothing: none;
+}
+
+.btn {
+  min-width: 75px;
+  min-height: 23px;
+  padding: 0 12px;
+}
+
+.btn.default {
+  box-shadow: inset -2px -2px var(--frame), inset 1px 1px var(--frame),
+              inset 2px 2px var(--highlight), inset -3px -3px var(--shadow),
+              inset 3px 3px var(--face);
+}
+
+.tag {
+  padding: 4px 6px;
+}
+
+.btn:active,
+.tag:active,
+.btn.active {
+  box-shadow: var(--sunken);
+}
+
+.btn:focus-visible,
+.tag:focus-visible {
+  outline: 1px dotted #000;
+  outline-offset: -4px;
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 8px;
+}
+
+.tag-cloud {
+  gap: 6px;
+  margin: 4px 0;
+}
+
+/* ===== Explorer "Details" file list ===== */
+.file-list {
+  width: 100%;
+  overflow: auto;
+}
+
+.file-list table {
+  width: 100%;
+  white-space: normal;
+}
+
+.file-list tbody td {
+  height: auto;
+  padding: 6px 8px;
+  vertical-align: top;
+  border-bottom: 1px dotted var(--face);
+}
+
+.file-list .col-date {
+  width: 1%;
+  white-space: nowrap;
+}
+
+.file-name {
+  color: #000;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.file-name::before {
+  content: "📄";
+  margin-right: 4px;
+  font-weight: normal;
+}
+
+.file-list .excerpt {
+  font-family: var(--font-text);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--muted);
+  margin-top: 3px;
+  -webkit-font-smoothing: auto;
+}
+
+/* Hovered row looks selected */
+.file-list tbody tr:hover,
+.file-list tbody tr:focus-within {
+  background: var(--navy);
+  color: #fff;
+}
+
+.file-list tbody tr:hover .file-name,
+.file-list tbody tr:hover .excerpt,
+.file-list tbody tr:focus-within .file-name,
+.file-list tbody tr:focus-within .excerpt {
+  color: #fff;
+}
+
+.file-list tbody tr:hover .file-name:focus,
+.file-list tbody tr:focus-within .file-name:focus {
+  outline-color: #fff;
+}
+
+/* ===== Pagination ===== */
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.pagination .btn:not([href]):not(.active) {
+  color: var(--shadow);
+}
+
+.pagination .btn.active {
+  font-weight: bold;
+}
+
+/* ===== Search ===== */
+.search-row input {
+  flex: 1;
+  min-width: 0;
+}
+
+.search-results {
+  margin-top: 10px;
+}
+
+/* ===== Fieldsets (tags page, tag wiki) ===== */
+fieldset {
+  margin: 0 0 10px;
+}
+
+.tag-wiki .prose {
+  font-family: var(--font-text);
+  font-size: 14px;
+  line-height: 1.6;
+  -webkit-font-smoothing: auto;
+}
+
+/* ===== Prose ===== */
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4 {
+  font-family: var(--font-text);
+  line-height: 1.3;
+  margin: 1.8em 0 0.6em;
+}
+
+.prose h1 { font-size: 1.6em; }
+.prose h2 { font-size: 1.4em; }
+.prose h3 { font-size: 1.2em; }
+.prose h4 { font-size: 1.05em; }
+
+.prose > :first-child {
+  margin-top: 0;
+}
+
+.prose p,
+.prose ul,
+.prose ol,
+.prose dl {
+  margin: 0 0 1em;
+}
+
+.prose ul,
+.prose ol {
+  padding-left: 1.5em;
+}
+
+.prose li {
+  margin-bottom: 0.25em;
+}
+
+.prose a {
+  color: #0000ff;
+}
+
+.prose a:visited {
+  color: #800080;
+}
+
+.prose code {
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+  background: #f0f0f0;
+  padding: 0.05em 0.3em;
+  box-shadow: var(--sunken-thin);
+}
+
+.prose pre {
+  font-size: 13px;
+  line-height: 1.5;
+  overflow-x: auto;
+  margin: 1.2em 0;
+  padding: 12px 14px;
+}
+
+.prose pre code {
+  background: none;
+  box-shadow: none;
+  padding: 0;
+  font-size: inherit;
+}
+
+.prose blockquote {
+  margin: 1.2em 0;
+  padding: 2px 0 2px 14px;
+  border-left: 3px groove var(--surface);
+  color: var(--muted);
+}
+
+.prose img {
+  max-width: 100%;
+  height: auto;
+  box-shadow: var(--sunken);
+  padding: 2px;
+  background: var(--surface);
+}
+
+.prose hr {
+  border: none;
+  border-top: 1px solid var(--shadow);
+  border-bottom: 1px solid var(--highlight);
+  margin: 2em 0;
+}
+
+.prose table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  white-space: normal;
+  margin: 1.2em 0;
+  font-family: var(--font-text);
+  font-size: 0.9em;
+  box-shadow: var(--sunken);
+  padding: 2px;
+}
+
+.prose table > thead > tr > * {
+  height: auto;
+  padding: 4px 8px;
+  font-family: var(--font-ui);
+  font-size: 11px;
+}
+
+.prose table > tbody > tr > * {
+  height: auto;
+  padding: 4px 8px;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+/* ===== Status bar ===== */
+.status-bar {
+  margin: 0 1px 1px;
+}
+
+.status-bar-field {
+  margin: 0;
+  padding: 2px 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.status-main {
+  flex: 1;
+}
+
+.status-lang,
+.status-copy {
+  flex: none;
+}
+
+.status-lang a {
+  color: var(--text);
+  text-decoration: none;
+  margin-right: 6px;
+}
+
+.status-lang a:last-child {
+  margin-right: 0;
+}
+
+.status-lang a:hover {
+  text-decoration: underline;
+}
+
+.status-lang a.active {
+  font-weight: bold;
+}
+
+/* ===== Taskbar ===== */
+.taskbar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+  height: var(--taskbar-height);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px;
+  background: var(--surface);
+  box-shadow: inset 0 1px var(--face), inset 0 2px var(--highlight);
+}
+
+.start-button,
+.task-button {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 22px;
+  color: #000;
+  text-shadow: none;
+}
+
+.start-button {
+  min-width: 0;
+  padding: 0 6px 0 4px;
+}
+
+.start-button.active,
+.task-button.active {
+  box-shadow: var(--sunken);
+}
+
+.taskbar-tasks {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  padding-left: 4px;
+  border-left: 1px solid var(--shadow);
+  box-shadow: inset 1px 0 var(--highlight);
+}
+
+.task-button {
+  width: 180px;
+  max-width: 100%;
+  justify-content: flex-start;
+  padding: 0 6px;
+}
+
+.task-button span {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.task-button.active {
+  font-weight: bold;
+  background: repeating-conic-gradient(var(--surface) 0 25%, var(--highlight) 0 50%) 0 0 / 2px 2px;
+}
+
+.tray {
+  flex: none;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  box-shadow: var(--sunken-thin);
+}
+
+/* ===== Start menu ===== */
+.start-menu {
+  position: fixed;
+  left: 2px;
+  bottom: calc(var(--taskbar-height) - 2px);
+  z-index: 101;
+  display: flex;
+  min-width: 220px;
+  padding: 3px;
+  background: var(--surface);
+  box-shadow: var(--raised);
+}
+
+.start-menu[hidden] {
+  display: none;
+}
+
+.start-menu-banner {
+  width: 24px;
+  background: linear-gradient(0deg, var(--navy), var(--navy-light));
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 6px;
+}
+
+.start-menu-banner span {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  color: var(--surface);
+  font-weight: bold;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.start-menu-items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex: 1;
+}
+
+.start-menu-items a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 20px 6px 8px;
+  color: #000;
+  text-decoration: none;
+}
+
+.start-menu-items a:hover,
+.start-menu-items a:focus {
+  background: var(--navy);
+  color: #fff;
+  outline: none;
+}
+
+.start-icon {
+  width: 22px;
+  font-size: 18px;
+  text-align: center;
+}
+
+.start-menu-separator {
+  height: 2px;
+  margin: 3px 2px;
+  border-top: 1px solid var(--shadow);
+  border-bottom: 1px solid var(--highlight);
+}
+
+/* ===== Link preview (styled as a Win98 tooltip) ===== */
+.link-preview-popup {
+  position: absolute;
+  z-index: 200;
+  max-width: 320px;
+  padding: 4px 6px;
+  background: var(--tooltip);
+  border: 1px solid #000;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.25);
+  color: #000;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  pointer-events: none;
+}
+
+.link-preview-popup h4 {
+  font-size: 11px;
+  margin: 0 0 2px;
+}
+
+.link-preview-popup .meta {
+  font-size: 11px;
+  margin-bottom: 4px;
+}
+
+.link-preview-popup .excerpt {
+  font-family: var(--font-text);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+/* ===== 404 error dialog ===== */
+.error-page {
+  display: flex;
+  justify-content: center;
+  padding: 48px 0;
+}
+
+.error-dialog {
+  width: 100%;
+  max-width: 360px;
+}
+
+.title-bar-close {
+  display: block;
+  width: 16px;
+  height: 14px;
+  background: var(--surface);
+  box-shadow: var(--raised);
+  position: relative;
+}
+
+.title-bar-close::before,
+.title-bar-close::after {
+  content: "";
+  position: absolute;
+  left: 3px;
+  top: 6px;
+  width: 8px;
+  height: 2px;
+  background: #000;
+  transform: rotate(45deg);
+}
+
+.title-bar-close::after {
+  transform: rotate(-45deg);
+}
+
+.error-message {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 6px 14px;
+}
+
+.error-icon {
+  flex: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #ff0000;
+  color: #fff;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 1px 1px 0 #000;
+}
+
+.error-message p {
+  margin: 0;
+}
+
+.error-actions {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 4px;
+}
+
+/* ===== Japanese Typography - Vertical Text ===== */
+.vertical-text {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  height: 100%;
+  max-height: 80vh;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 1rem;
+  line-height: 2;
+  font-feature-settings: "vert" 1, "vrt2" 1;
+}
+
+.vertical-text p {
+  margin: 0 1rem 0 0;
+  text-indent: 1em;
+}
+
+.vertical-text h1,
+.vertical-text h2,
+.vertical-text h3,
+.vertical-text h4 {
+  margin: 0 1.5rem 0 0;
+}
+
+.prose .vertical-text {
+  font-family: var(--font-mincho);
+}
+
+ruby {
+  ruby-align: center;
+  ruby-position: over;
+}
+
+rt {
+  font-size: 0.5em;
+  line-height: 1;
+  color: var(--muted);
+  font-weight: normal;
+}
+
+@-moz-document url-prefix() {
+  rt {
+    font-size: 0.6em;
+  }
+}
+
+.sesame-dot {
+  text-emphasis-style: sesame;
+  text-emphasis-position: over right;
+}
+
+.sesame-dot-white {
+  text-emphasis-style: filled sesame white;
+  text-emphasis-position: over right;
+}
+
+.boten {
+  text-emphasis-style: filled;
+  text-emphasis-position: over right;
+}
+
+/* Whole-article vertical layout toggled from the menu bar */
+.main.vertical-layout article {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  max-height: 80vh;
+  overflow-x: auto;
+  overflow-y: hidden;
+  font-family: var(--font-mincho);
+}
+
+.main.vertical-layout .prose {
+  line-height: 2;
+}
+
+.main.vertical-layout .prose p {
+  margin: 0 0 0 1em;
+  text-indent: 1em;
+}
+
+.main.vertical-layout .prose h1,
+.main.vertical-layout .prose h2,
+.main.vertical-layout .prose h3,
+.main.vertical-layout .prose h4 {
+  margin: 0 0 0 1.5rem;
+}
+
+.main.vertical-layout .post-header {
+  margin: 0 0 0 1.5rem;
+  padding: 0 0 0 1rem;
+  border-bottom: none;
+  border-left: 1px solid var(--surface);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 640px) {
+  .desktop {
+    padding: 0;
+  }
+
+  .app-window {
+    min-height: calc(100vh - var(--taskbar-height));
+  }
+
+  .title-bar-controls button[aria-label="Maximize"],
+  .title-bar-controls button[aria-label="Restore"] {
+    display: none;
+  }
+
+  .document {
+    padding: 16px;
+    font-size: 15px;
+  }
+
+  .post-header h1 {
+    font-size: 22px;
+  }
+
+  .status-copy {
+    display: none;
+  }
+
+  .task-button {
+    width: auto;
+    flex: 1;
+  }
+
+  .link-preview-popup {
+    display: none;
+  }
+}

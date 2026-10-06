@@ -1,0 +1,14 @@
+{{ define "main" }}
+<h1 class="page-heading">Tag: {{ .Title }}</h1>
+
+{{ if .Content }}
+<fieldset class="tag-wiki">
+  <legend>About this tag</legend>
+  <div class="prose">
+    {{ .Content }}
+  </div>
+</fieldset>
+{{ end }}
+
+{{ partial "file-list.html" .Pages }}
+{{ end }}

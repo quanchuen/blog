@@ -1,0 +1,9 @@
+<nav class="menu-bar" aria-label="Main">
+  {{ range .Site.Menus.main }}
+  <a href="{{ .URL }}" title="{{ .Title }}"{{ if $.IsMenuCurrent "main" . }} class="active" aria-current="page"{{ end }}>{{ .Name }}</a>
+  {{ end }}
+  <span class="menu-bar-spacer"></span>
+  {{ if or (eq .Lang "ja") (.Params.verticalText) }}
+  <button class="vertical-toggle" id="vertical-toggle" aria-label="Toggle vertical text" aria-pressed="false">縦</button>
+  {{ end }}
+</nav>

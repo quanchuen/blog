@@ -1,0 +1,73 @@
+{{ define "main" }}
+<h1 class="page-heading">Find: Files or Folders</h1>
+
+<div class="field-row search-row">
+  <label for="search-input">Containing text:</label>
+  <input type="search" id="search-input" placeholder="Type to search..." autofocus>
+</div>
+
+<div id="search-results" class="search-results"></div>
+
+<script src="/js/fuse.js"></script>
+<script>
+(function() {
+  var fuse = null;
+  var input = document.getElementById('search-input');
+  var results = document.getElementById('search-results');
+
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function(c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
+  fetch('/index.json')
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      fuse = new Fuse(data, {
+        keys: ['title', 'summary', 'tags'],
+        threshold: 0.3,
+        includeScore: true
+      });
+      // If there's a query param, search immediately
+      var q = new URLSearchParams(window.location.search).get('q');
+      if (q) {
+        input.value = q;
+        doSearch(q);
+      }
+    });
+
+  input.addEventListener('input', function() {
+    doSearch(this.value);
+  });
+
+  function doSearch(query) {
+    if (!fuse || !query) {
+      results.innerHTML = '';
+      return;
+    }
+    var matches = fuse.search(query).slice(0, 20);
+    if (matches.length === 0) {
+      results.innerHTML = '<p class="muted">No items match your search.</p>';
+      return;
+    }
+    // Same markup as partials/post-row.html
+    var rows = matches.map(function(m) {
+      var item = m.item;
+      var tags = (item.tags || []).map(function(t) {
+        return '<span class="tag">' + esc(t) + '</span>';
+      }).join(' ');
+      return '<tr><td>' +
+        '<a class="file-name" href="' + esc(item.permalink) + '">' + esc(item.title) + '</a>' +
+        '<div class="excerpt">' + esc(item.summary) + '</div>' +
+        (tags ? '<div class="tag-list">' + tags + '</div>' : '') +
+        '</td><td class="col-date">' + esc(item.date) + '</td></tr>';
+    }).join('');
+    results.innerHTML = '<div class="sunken-panel file-list"><table class="interactive">' +
+      '<thead><tr><th>Name</th><th class="col-date">Modified</th></tr></thead>' +
+      '<tbody>' + rows + '</tbody></table></div>' +
+      '<p class="muted">' + matches.length + ' file(s) found</p>';
+  }
+})();
+</script>
+{{ end }}
