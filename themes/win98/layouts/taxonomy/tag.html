@@ -1,0 +1,11 @@
+{{ define "main" }}
+<h1 class="page-heading">All Tags</h1>
+<fieldset>
+  <legend>Tags</legend>
+  <div class="tag-list tag-cloud">
+    {{ range .Data.Terms.Alphabetical }}
+    <a href="{{ .Page.RelPermalink }}" class="tag">{{ .Page.Title }} ({{ .Count }})</a>
+    {{ end }}
+  </div>
+</fieldset>
+{{ end }}

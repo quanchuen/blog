@@ -1,0 +1,14 @@
+{{- $close := .Site.Home.RelPermalink -}}
+{{- with .Parent }}{{ $close = .RelPermalink }}{{ end -}}
+<div class="title-bar">
+  <div class="title-bar-text">
+    <img class="title-bar-icon" src="/icon.svg" alt="" width="16" height="16">
+    {{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} - {{ .Site.Title }}{{ end }}
+  </div>
+  <div class="title-bar-controls">
+    <button aria-label="Minimize" id="win-minimize"></button>
+    <button aria-label="Maximize" id="win-maximize"></button>
+    {{/* Close goes "up" one level; on the home page there is nowhere to go */}}
+    <button aria-label="Close" id="win-close" data-href="{{ $close }}"{{ if .IsHome }} disabled{{ end }}></button>
+  </div>
+</div>

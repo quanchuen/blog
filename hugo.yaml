@@ -2,7 +2,7 @@ baseURL: 'https://qzhou.dev'
 title: Proceedings of a Boring Human
 copyright: '© {year}'
 rights: Public Domain
-theme: boring-blue
+theme: win98
 readmore: true
 annotations: false
 

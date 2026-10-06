@@ -1,0 +1,9 @@
+<div class="status-bar">
+  <p class="status-bar-field status-main">{{ if .IsPage }}{{ .Date.Format .Site.Params.dateFormat }}{{ with .ReadingTime }} · {{ . }} min read{{ end }}{{ else }}{{ .Site.Params.tagline }}{{ end }}</p>
+  <p class="status-bar-field status-lang">
+    {{ range .AllTranslations }}
+    <a href="{{ .RelPermalink }}" lang="{{ .Language.Lang }}"{{ if eq .Language.Lang $.Language.Lang }} class="active"{{ end }}>{{ .Language.LanguageName }}</a>
+    {{ end }}
+  </p>
+  <p class="status-bar-field status-copy">{{ replace .Site.Copyright "{year}" (now.Format "2006") }}</p>
+</div>

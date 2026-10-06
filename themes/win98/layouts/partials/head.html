@@ -1,0 +1,23 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
+<meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.tagline }}{{ end }}">
+<meta name="author" content="{{ .Site.Params.author.name }}">
+<meta name="theme-color" content="#008080">
+<link rel="icon" href="/favicon.ico">
+<link rel="icon" type="image/svg+xml" href="/icon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+{{/* 98.css loads its fonts relative to itself, so it must be published under /css/ next to static/css/*.woff* */}}
+{{ $style := slice (resources.Get "css/98.css") (resources.Get "css/style.css") | resources.Concat "css/win98.css" | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $style.RelPermalink }}">
+<script>
+  // Apply saved preferences before paint to prevent flash
+  (function() {
+    var root = document.documentElement;
+    if (localStorage.getItem('win98-maximized') === 'true') root.classList.add('maximized');
+    if (localStorage.getItem('vertical-text') === 'true') root.classList.add('vertical-text-pending');
+  })();
+</script>
+{{ range .AlternativeOutputFormats -}}
+  {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
+{{ end }}

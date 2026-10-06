@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="{{ .Lang }}">
+<head>
+  {{ partial "head.html" . }}
+</head>
+<body>
+  <div class="desktop">
+    <div class="window app-window" id="app-window">
+      {{ partial "title-bar.html" . }}
+      {{ partial "menu-bar.html" . }}
+      <div class="window-body">
+        {{ partial "address-bar.html" . }}
+        <div class="main" id="main-content">
+          {{ block "main" . }}{{ end }}
+        </div>
+      </div>
+      {{ partial "status-bar.html" . }}
+    </div>
+  </div>
+  {{ partial "taskbar.html" . }}
+  {{ $main := resources.Get "js/main.js" | minify | fingerprint }}
+  <script src="{{ $main.RelPermalink }}"></script>
+  {{ if not .IsHome }}<script src="/js/link-preview.js" defer></script>{{ end }}
+</body>
+</html>

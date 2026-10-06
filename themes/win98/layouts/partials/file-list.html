@@ -1,0 +1,11 @@
+{{/* Explorer "Details" view. Context: a page collection. */}}
+<div class="sunken-panel file-list">
+  <table class="interactive">
+    <thead>
+      <tr><th>Name</th><th class="col-date">Modified</th></tr>
+    </thead>
+    <tbody>
+      {{ range . }}{{ partial "post-row.html" . }}{{ end }}
+    </tbody>
+  </table>
+</div>

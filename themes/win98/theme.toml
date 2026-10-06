@@ -1,0 +1,9 @@
+name = "win98"
+license = "unlicense"
+licenselink = "https://unlicense.org"
+description = "A Windows 98 flavoured Hugo theme built on 98.css (MIT, https://jdan.github.io/98.css/)"
+tags = ["blog", "retro", "windows98", "98.css"]
+min_version = "0.121.0"
+
+[author]
+  name = "Quan Zhou"

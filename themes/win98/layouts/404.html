@@ -1,0 +1,21 @@
+{{ define "main" }}
+<div class="error-page">
+  <div class="window error-dialog" role="alertdialog" aria-labelledby="error-title" aria-describedby="error-text">
+    <div class="title-bar">
+      <div class="title-bar-text" id="error-title">404 - Not Found</div>
+      <div class="title-bar-controls">
+        <a class="title-bar-close" href="{{ .Site.Home.RelPermalink }}" aria-label="Close"></a>
+      </div>
+    </div>
+    <div class="window-body">
+      <div class="error-message">
+        <span class="error-icon" aria-hidden="true">✖</span>
+        <p id="error-text">This page doesn't exist. How boring.</p>
+      </div>
+      <div class="error-actions">
+        <a class="btn default" href="{{ .Site.Home.RelPermalink }}">OK</a>
+      </div>
+    </div>
+  </div>
+</div>
+{{ end }}

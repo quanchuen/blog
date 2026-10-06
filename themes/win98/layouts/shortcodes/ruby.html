@@ -1,0 +1,8 @@
+{{/* Ruby/Furigana Shortcode
+  Usage: {{< ruby base="日本" ruby="にほん" >}}
+  Or: {{< ruby "日本" "にほん" >}}
+  Or: {{< ruby base="漢字" ruby="かんじ" >}}
+*/}}
+{{- $base := .Get "base" | default (.Get 0) -}}
+{{- $ruby := .Get "ruby" | default (.Get 1) -}}
+<ruby>{{ $base }}<rp>(</rp><rt>{{ $ruby }}</rt><rp>)</rp></ruby>
