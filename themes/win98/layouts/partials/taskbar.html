@@ -20,6 +20,9 @@
       {{ with .Site.Params.author.email }}
       <li><a role="menuitem" href="mailto:{{ . }}"><span class="start-icon" aria-hidden="true">✉️</span>Mail</a></li>
       {{ end }}
+      <li class="start-menu-separator" role="separator"></li>
+      {{/* Bottom slot is where Win98 muscle memory expects Shut Down, so keep it harmless */}}
+      <li><button type="button" role="menuitem" id="shutdown-button"><span class="start-icon" aria-hidden="true">⏻</span>Shut Down...</button></li>
     </ul>
   </div>
   <div class="taskbar-tasks">
@@ -30,4 +33,7 @@
   <div class="tray">
     <time id="tray-clock"></time>
   </div>
+</div>
+<div class="shutdown-screen" id="shutdown-screen" role="dialog" aria-modal="true" aria-label="Shut down" tabindex="-1" hidden>
+  <p>It's now safe to turn off<br>your computer.</p>
 </div>
