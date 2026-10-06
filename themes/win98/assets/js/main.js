@@ -88,6 +88,28 @@
     if (link) link.click();
   });
 
+  // ----- Shut Down... (harmless: any click or key brings the desktop back) -----
+  var shutdownBtn = document.getElementById('shutdown-button');
+  var shutdownScreen = document.getElementById('shutdown-screen');
+
+  if (shutdownBtn && shutdownScreen && startMenu) {
+    var wake = function() {
+      shutdownScreen.hidden = true;
+      startBtn.focus();
+    };
+    shutdownBtn.addEventListener('click', function() {
+      setStartOpen(false);
+      shutdownScreen.hidden = false;
+      // The screen holds focus, so its own keydown listener sees the next key
+      shutdownScreen.focus();
+    });
+    shutdownScreen.addEventListener('click', wake);
+    shutdownScreen.addEventListener('keydown', function(e) {
+      e.preventDefault();
+      wake();
+    });
+  }
+
   // ----- Tray clock -----
   var clock = document.getElementById('tray-clock');
   if (clock) {
