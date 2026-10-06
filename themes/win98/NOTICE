@@ -1,0 +1,32 @@
+win98 Hugo theme
+================
+
+The theme's own templates, styles and scripts are released under the
+Unlicense (see LICENSE). That license does NOT apply to the third-party
+components below, which keep their original licenses.
+
+98.css v0.1.21
+  Files:   assets/css/98.css
+  Author:  Copyright 2020 Jordan Scales
+  License: MIT, full text in assets/css/98.css.LICENSE
+  Source:  https://github.com/jdan/98.css
+  Notes:   The copyright and permission notice is also emitted at the top of
+           the published stylesheet via assets/css/notice.css.
+
+MS Sans Serif / MS Sans Serif Bold (pixel webfonts, shipped with 98.css)
+  Files:   static/css/ms_sans_serif.woff{,2}, static/css/ms_sans_serif_bold.woff{,2}
+  Author:  "lou", created with FontStruct
+  License: Creative Commons Attribution-ShareAlike 3.0
+           https://creativecommons.org/licenses/by-sa/3.0/
+  Source:  https://fontstruct.com/fontstructions/show/1384746
+           https://fontstruct.com/fontstructions/show/1384862
+  Notes:   The original license.txt and readme.txt travel with the fonts as
+           static/css/ms_sans_serif*.LICENSE.txt / *.README.txt. The fonts
+           were converted to WOFF/WOFF2 by the 98.css project; derivatives of
+           the fonts must stay under CC BY-SA 3.0.
+
+Fuse.js v7.0.0
+  Files:   static/js/fuse.js
+  Author:  Copyright (c) 2023 Kiro Risk
+  License: Apache License 2.0, https://www.apache.org/licenses/LICENSE-2.0
+  Source:  https://fusejs.io
