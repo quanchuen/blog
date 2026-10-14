@@ -122,6 +122,15 @@
     setInterval(tick, 15000);
   }
 
+  // ----- Content pane scrolling -----
+  // On desktop only .main scrolls (see "In-window scrolling" in style.css), so
+  // give it focus up front; otherwise arrow keys, Space and PgDn do nothing
+  // until the reader clicks into the window.
+  var pane = document.getElementById('main-content');
+  if (pane && document.activeElement === document.body && !location.hash) {
+    pane.focus({ preventScroll: true });
+  }
+
   // ----- Vertical text toggle -----
   var verticalToggle = document.getElementById('vertical-toggle');
   var mainContent = document.getElementById('main-content');

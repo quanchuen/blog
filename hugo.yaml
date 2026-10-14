@@ -16,7 +16,7 @@ params:
   author:
     name: Quan Zhou
     email: hi@qzhou.dev
-    github: q2hou
+    github: quanchuen
     location: 'Tokyo, Japan'
   assets:
     disable_fingerprinting: true

@@ -10,7 +10,7 @@
       {{ partial "menu-bar.html" . }}
       <div class="window-body">
         {{ partial "address-bar.html" . }}
-        <div class="main" id="main-content">
+        <div class="main" id="main-content" tabindex="-1">
           {{ block "main" . }}{{ end }}
         </div>
       </div>

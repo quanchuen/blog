@@ -917,6 +917,61 @@ rt {
   border-left: 1px solid var(--surface);
 }
 
+/* ===== In-window scrolling =====
+ * On desktop the window is pinned to the viewport and only the content pane
+ * scrolls, so the 98.css scrollbar sits inside the frame between the address
+ * bar and status bar instead of on the browser edge. Phones keep page scroll.
+ */
+@media (min-width: 641px) {
+  html,
+  body {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .desktop {
+    height: calc(100vh - var(--taskbar-height));
+    height: calc(100dvh - var(--taskbar-height));
+  }
+
+  .app-window,
+  .maximized .app-window {
+    height: 100%;
+    min-height: 0;
+  }
+
+  .app-window > .window-body {
+    min-height: 0;
+  }
+
+  .main {
+    min-height: 0;
+    overflow: auto;
+  }
+
+  .main:focus {
+    outline: none;
+  }
+}
+
+/* 98.css styles every start/end button, so Chrome draws a doubled pair of
+ * arrows at each end; keep only the outer decrement/increment buttons. */
+::-webkit-scrollbar-button:vertical:start:increment,
+::-webkit-scrollbar-button:vertical:end:decrement,
+::-webkit-scrollbar-button:horizontal:start:increment,
+::-webkit-scrollbar-button:horizontal:end:decrement {
+  display: none;
+}
+
+/* Browsers without ::-webkit-scrollbar (Firefox) get the closest colors. Kept
+ * behind @supports because Chrome drops its ::-webkit-scrollbar styling as
+ * soon as scrollbar-color is set. */
+@supports not selector(::-webkit-scrollbar) {
+  * {
+    scrollbar-color: var(--face) var(--surface);
+  }
+}
+
 /* ===== Responsive ===== */
 @media (max-width: 640px) {
   .desktop {
